@@ -154,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1310598815}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &76856412
 CapsuleCollider:
@@ -250,7 +250,7 @@ Transform:
   m_LocalScale: {x: 0.67485, y: 0.38818, z: 1}
   m_Children: []
   m_Father: {fileID: 1310598815}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &301975516
 SphereCollider:
@@ -338,11 +338,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389288203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.25, z: -10.84}
+  m_LocalPosition: {x: -1.01, y: -0.26999998, z: -56.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1310598815}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &447898900
 GameObject:
@@ -615,7 +615,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1310598815}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -659,7 +659,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1310598815}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1310598814
 GameObject:
@@ -670,8 +670,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1310598815}
-  - component: {fileID: 1310598816}
   - component: {fileID: 1310598817}
+  - component: {fileID: 1310598816}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Untagged
@@ -687,12 +687,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310598814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.98, z: 0.13}
+  m_LocalPosition: {x: 0.31, y: 0.98, z: -1.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1759152039}
-  - {fileID: 389288204}
-  - {fileID: 1353799578}
   - {fileID: 301975515}
   - {fileID: 963194228}
   - {fileID: 76856411}
@@ -714,7 +711,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -734,16 +731,19 @@ MonoBehaviour:
   rotateSpeed: 75
   offsetBack: {x: 5, y: 0, z: 0}
   deltaBack: {x: 0.2, y: 0, z: 0}
-  speed: 1
+  speed: 0.05
   Min: 0
   Max: 0
-  t: 0
+  t: 0.75
   current: 0
   currentTime: 0
   deltaTime: 0
-  startPos: {fileID: 0}
-  semyPos: {fileID: 0}
-  finishPos: {fileID: 0}
+  startPos: {fileID: 1759152039}
+  semyPos: {fileID: 1353799578}
+  finishPos: {fileID: 389288204}
+  getKeyUp: 0
+  getKeyDown: 0
+  getKeyKey: 0
 --- !u!1 &1353799577
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,11 +768,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353799577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.99, y: -1.25, z: -1.18}
+  m_LocalPosition: {x: 44.68, y: -0.26999998, z: 0.2700001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1310598815}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759152038
 GameObject:
@@ -783,6 +783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1759152039}
+  - component: {fileID: 1759152040}
   m_Layer: 0
   m_Name: StartPos
   m_TagString: Untagged
@@ -798,9 +799,22 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759152038}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.25, z: 9.16}
+  m_LocalPosition: {x: -32.7, y: 4.7, z: 35.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1310598815}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1759152040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759152038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.75, z: 0}
