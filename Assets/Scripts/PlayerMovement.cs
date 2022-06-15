@@ -10,56 +10,68 @@ public class PlayerMovement : MonoBehaviour
     public float rotateSpeed = 10f; // скорость поворота вокруг оси Y
 
     public Vector3 offsetBack;
-    public Vector3 deltaBack;
-    private Vector3 summDeltaBack;
+    public Vector3 deltaBack;    
 
     private Vector3 forw; //  переменная вектор движения вперед
-    
+
     private float vInput; // переменная для хранения координат перемещения вперед WS
     private float hInput; // переменная для хранения координат поворота вокруг AD
 
     private bool isStoped = false;
     private bool isMoved = false;
+    private Coroutine currentRoutine;
 
+    public float speed = 1;
     
-    //Вторая реализация
-    //public CharacterController controller;
-    //public Transform groundCheck;
-    //public LayerMask groundMask;
-    //public float speed = 10f;
-    //public float jumpHeight = 3f;
+    public float Min;
+    public float Max;
+    [Range(0, 1)]
+    public float t = 0;
+    public float current;
 
-    //public float groundDistance = 0.4f;
+    public float currentTime;
+    public float deltaTime;
 
-    //public float gravity = - 9.8f;
-    //Vector3 velocity;
-    //bool isGrounded;
+    public Transform startPos;
+    public Transform semyPos;
+    public Transform finishPos;
+
+    private float startTime;
+    private float journeyLength;
 
 
     private void Start()
     {
-        StartCoroutine(MoveBack());
+        startTime = Time.time;
+        journeyLength = Vector3.Distance(startPos.position, finishPos.position);
+        //StartCoroutine(MoveBack());
     }
 
-    private IEnumerator MoveBack()
+    private IEnumerator MoveBack(Vector3 startPosition, Vector3 endPosition)
     {
-        while (isStoped && isMoved)
+        float time = 0.0f;
+
+        while (time < 1)
         {
-            transform.position += deltaBack * Time.deltaTime;
-            summDeltaBack += deltaBack * Time.deltaTime;
-            while (summDeltaBack.magnitude >= offsetBack.magnitude)
-            {
-                isMoved = false;
-                summDeltaBack = Vector3.zero;
-            
-            }
-            yield return null;
+            time += Time.deltaTime * speed;
+            transform.position = Vector3.Lerp(startPosition, endPosition, time);
+            yield return new WaitForEndOfFrame();
         }
-        
+        currentRoutine = null;
+    }
+
+    private void OnValidate()
+    {
+        current = Mathf.Lerp(Min, Max, t);
     }
 
     public void Update()
     {
+
+        float distCovered = (Time.time - startTime) * speed;
+        float fractionOfJourney = distCovered / journeyLength;
+        transform.position = Vector3.Lerp(Vector3.Lerp(startPos.position, semyPos.position, fractionOfJourney), finishPos.position, fractionOfJourney);
+
         //Первая реализация
 
         vInput = Input.GetAxis("Vertical") * moveSpeed;
@@ -70,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = forw * Time.deltaTime + transform.position;
 
         // реализация поворота вокруг оси Y
-        
+
         transform.eulerAngles += new Vector3(0.0f, hInput, 0.0f) * Time.deltaTime;
 
         // релизация откатывания назад после остановки движения
@@ -82,62 +94,24 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoved = true;
             isStoped = false;
+            if (currentRoutine != null)
+            {
+                StopCoroutine(currentRoutine);
+                currentRoutine = null;
+            }
         }
 
-        /*if (isStoped && isMoved) // реализуем откат в корутине
+        if (isStoped && isMoved) // реализуем откат в корутине
         {
-            transform.position += deltaBack * Time.deltaTime;
-            summDeltaBack += deltaBack * Time.deltaTime;
-            if (summDeltaBack.magnitude >= offsetBack.magnitude)
+            if (currentRoutine == null)
             {
-                isMoved = false;
-                summDeltaBack = Vector3.zero;
+                currentRoutine = StartCoroutine(MoveBack(transform.position, transform.position + offsetBack));
             }
-        } */
+            isMoved = false;
+        }
 
-
-
-        //move = transform.right * hInput;
-        //rotate = transform.forward * vInput;
-
-        //transform.position = (move + rotate) * Time.deltaTime + transform.position;
-        //transform.position = move * Time.deltaTime + transform.position;
-
-
-
-        //this.transform.Translate(Vector3.forward * vInput * Time.deltaTime);
-
-        //this.transform.Rotate(Vector3.up * hInput * Time.deltaTime);
-
-        //Вторая реализация
-        //    isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        //    if(isGrounded && velocity.y < 0)
-        //    {
-        //        velocity.y = -2f;
-        //    }
-
-        //    float x = Input.GetAxis("Horizontal");
-        //    float z = Input.GetAxis("Vertical");
-
-        //   if(Input.GetButtonDown("Jump") && isGrounded)
-        //    {
-        //        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        //    }
-
-        //    Vector3 move = transform.right * x + transform.forward * z;
-        //    controller.Move(move * speed * Time.deltaTime);
-
-        //    velocity.y += gravity * Time.deltaTime;
-        //    controller.Move(velocity * Time.deltaTime);
-
-        //    if (Input.GetKey("c"))
-        //    {
-        //        controller.height = 1f;
-        //    }
-        //    else
-        //    {
-        //        controller.height = 2f;
-        //    }
+        currentTime += Time.deltaTime;
+        deltaTime = Time.deltaTime;
     }
+    
 }
