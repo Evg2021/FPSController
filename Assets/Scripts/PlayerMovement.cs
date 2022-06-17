@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Первая реализация
+    
     public float moveSpeed = 10f; // скорость движения вперед
     public float rotateSpeed = 10f; // скорость поворота вокруг оси Y
 
@@ -36,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform semyPos;
     public Transform finishPos;
 
-    private float startTime;
-    private float journeyLength;
+    //private float startTime;
+    //private float journeyLength;
 
     public bool getKeyUp;
     public bool getKeyDown;
@@ -45,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        startTime = Time.time;
-        journeyLength = Vector3.Distance(startPos.position, finishPos.position);
+        //startTime = Time.time;
+        //journeyLength = Vector3.Distance(startPos.position, finishPos.position);
         StartCoroutine(MoveBack(startPos.position, finishPos.position));
     }
 

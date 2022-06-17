@@ -323,6 +323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 389288204}
+  - component: {fileID: 389288205}
   m_Layer: 0
   m_Name: FinishPos
   m_TagString: Untagged
@@ -338,12 +339,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389288203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.01, y: -0.26999998, z: -56.6}
+  m_LocalPosition: {x: 1, y: 0, z: -31.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &389288205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389288203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a8af23e1d7c40429ce84be27c9f019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherGameObject: {fileID: 1310598814}
+  fps: {fileID: 0}
 --- !u!1 &447898900
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310598814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 0.98, z: -1.16}
+  m_LocalPosition: {x: 3, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 301975515}
@@ -711,7 +726,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0
+  m_StepOffset: 0.342
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -730,12 +745,12 @@ MonoBehaviour:
   moveSpeed: 10
   rotateSpeed: 75
   offsetBack: {x: 5, y: 0, z: 0}
-  deltaBack: {x: 0.2, y: 0, z: 0}
+  deltaBack: {x: 0.2, y: 1, z: 0}
   speed: 0.05
-  Min: 0
-  Max: 0
-  t: 0.75
-  current: 0
+  Min: 1
+  Max: 6
+  t: 0.342
+  current: 2.71
   currentTime: 0
   deltaTime: 0
   startPos: {fileID: 1759152039}
@@ -817,4 +832,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.75, z: 0}
+  m_Center: {x: 0, y: 0.342, z: 0}
