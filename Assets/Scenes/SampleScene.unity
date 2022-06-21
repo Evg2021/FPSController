@@ -359,6 +359,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherGameObject: {fileID: 1310598814}
   fps: {fileID: 0}
+  characterController: {fileID: 0}
+  step: 0
+  angleStep: 0
 --- !u!1 &447898900
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,8 +704,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310598814}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 3}
+  m_LocalRotation: {x: -0, y: 0.28604934, z: -0, w: 0.9582149}
+  m_LocalPosition: {x: 2.9912286, y: 1.02, z: 3.002618}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 301975515}
@@ -711,7 +714,7 @@ Transform:
   - {fileID: 1291352301}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 33.243, z: 0}
 --- !u!143 &1310598816
 CharacterController:
   m_ObjectHideFlags: 0
@@ -726,7 +729,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.342
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -747,10 +750,10 @@ MonoBehaviour:
   offsetBack: {x: 5, y: 0, z: 0}
   deltaBack: {x: 0.2, y: 1, z: 0}
   speed: 0.05
-  Min: 1
+  Min: 2
   Max: 6
-  t: 0.342
-  current: 2.71
+  t: 0
+  current: 2
   currentTime: 0
   deltaTime: 0
   startPos: {fileID: 1759152039}
@@ -832,4 +835,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.342, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}

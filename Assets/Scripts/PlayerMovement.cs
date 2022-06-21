@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     public bool getKeyDown;
     public bool getKeyKey;
 
+    private Vector3 motion;
+
     private void Start()
     {
         //startTime = Time.time;
@@ -70,6 +72,12 @@ public class PlayerMovement : MonoBehaviour
         {
             time += Time.deltaTime * speed;
             transform.position = Vector3.Lerp(Vector3.Lerp(startPosition, midPosition, time), Vector3.Lerp(midPosition, endPosition, time), time);
+
+            transform.LookAt(midPosition, Vector3.Lerp(Vector3.Lerp(startPosition, midPosition, time), Vector3.Lerp(midPosition, endPosition, time), time));
+            //motion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            //motion = transform.TransformDirection(motion);
+            //player.Move(motion * Time.deltaTime * speed);
+            //transform.eulerAngles = new Vector3(0.0f, transform.position.y * 90.0f, 0.0f); // * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         currentRoutine = null;
