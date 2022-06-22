@@ -64,16 +64,19 @@ public class PlayerMovement : MonoBehaviour
         }
         currentRoutine = null;
     }
-    private IEnumerator MoveBack(Vector3 startPosition, Vector3 midPosition, Vector3 endPosition)
+    private IEnumerator MoveBack(Transform startPosition, Transform midPosition, Transform endPosition)
     {
         float time = 0.0f;
 
         while (time < 1)
         {
             time += Time.deltaTime * speed;
-            transform.position = Vector3.Lerp(Vector3.Lerp(startPosition, midPosition, time), Vector3.Lerp(midPosition, endPosition, time), time);
+            transform.position = Vector3.Lerp(Vector3.Lerp(startPosition.position, midPosition.position, time), Vector3.Lerp(midPosition.position, endPosition.position, time), time);
+            transform.rotation = Quaternion.Lerp(Quaternion.Lerp(startPosition.rotation, midPosition.rotation, time), 
+                                                 Quaternion.Lerp(midPosition.rotation, endPosition.rotation, time), 
+                                                 time);
 
-            transform.LookAt(midPosition, Vector3.Lerp(Vector3.Lerp(startPosition, midPosition, time), Vector3.Lerp(midPosition, endPosition, time), time));
+            transform.LookAt(midPosition, Vector3.up);
             //motion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             //motion = transform.TransformDirection(motion);
             //player.Move(motion * Time.deltaTime * speed);
@@ -105,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            StartCoroutine(MoveBack(startPos.position, semyPos.position, finishPos.position));
+            StartCoroutine(MoveBack(startPos, semyPos, finishPos));
         }
         //Move();
 
