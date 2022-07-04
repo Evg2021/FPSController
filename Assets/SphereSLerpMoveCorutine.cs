@@ -6,38 +6,60 @@ public class SphereSLerpMoveCorutine : MonoBehaviour
 {
     public Transform startPosition;
     public Transform endPosition;
-    public float moveSpeed = 10.0f;
+    public float moveSpeed = 0.2f;
     private Coroutine spheraRoutine;
+    private List<Vector3> positions;
 
     private IEnumerator SphereCoroutine(Vector3 start, Vector3 end)
     {
-        
         float time = 0.0f;
-        
-        while (time < 1)
+        positions = new List<Vector3>();
+        positions.Add(transform.position);
+        while (true)
         {
             time += Time.deltaTime * moveSpeed;
-            transform.position = Vector3.Slerp(start, end, time);
-            yield return null;  
+            transform.position = Vector3.SlerpUnclamped(start, end, time);
+            positions.Add(transform.position);
+            yield return new WaitForEndOfFrame();
         }
-        spheraRoutine = null;
     }
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         if (startPosition != null && endPosition != null)
         {
-            StartCoroutine(SphereCoroutine(startPosition.position, endPosition.position));
+            
+            spheraRoutine = StartCoroutine(SphereCoroutine(startPosition.position, endPosition.position));
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (spheraRoutine != null)
-        //{
-        //    StopCoroutine(spheraRoutine);
-        //    spheraRoutine = null;
-        //}
+        if (startPosition != null && endPosition != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (spheraRoutine != null)
+                {
+                    StopCoroutine(spheraRoutine);
+                    spheraRoutine = null;
+                }
+                spheraRoutine = StartCoroutine(SphereCoroutine(startPosition.position, endPosition.position));
+                                
+            }
+        }        
+    }
+    private void OnDrawGizmos()
+    {
+        if(positions != null && positions.Count>2)
+        {
+            Gizmos.color = Color.green;
+            for (int i = 0; i< positions.Count - 1; i++)
+            {
+                
+                Gizmos.DrawLine(positions[i], positions[i + 1]);
+            }
+        }
     }
 }
