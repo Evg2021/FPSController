@@ -27,7 +27,7 @@ public class MousePositionMove : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(MoveToMouseClick())
+       // StartCoroutine(MoveToMouseClick())
     }
 
     // Update is called once per frame
