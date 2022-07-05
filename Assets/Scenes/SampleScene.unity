@@ -868,6 +868,7 @@ GameObject:
   - component: {fileID: 1310598815}
   - component: {fileID: 1310598817}
   - component: {fileID: 1310598816}
+  - component: {fileID: 1310598818}
   m_Layer: 0
   m_Name: FPSController
   m_TagString: Untagged
@@ -939,6 +940,20 @@ MonoBehaviour:
   getKeyUp: 0
   getKeyDown: 0
   getKeyKey: 0
+--- !u!114 &1310598818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310598814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e093c6c7ffede4a9374a2808f66b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedOfRotation: 5
+  AngleRotation: 1
 --- !u!1 &1338372309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,6 +1096,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   First: {fileID: 1759152039}
   Finish: {fileID: 389288204}
+  speedRunning: 0.2
+  time: 0
 --- !u!1 &1353799577
 GameObject:
   m_ObjectHideFlags: 0
